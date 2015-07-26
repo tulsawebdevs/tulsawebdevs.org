@@ -53,7 +53,7 @@ class Common(Configuration):
         'mptt',
         'easy_thumbnails',
         'calendarium',
-        # 'django_extensions',
+        'django_extensions',
         # 'rest_framework',
         # 'webpack_loader',
     )
