@@ -2,6 +2,3 @@
 
 # webserver
 gunicorn==19.3
-
-# static file serving
-whitenoise==2.0

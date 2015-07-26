@@ -159,7 +159,7 @@ class Common(Configuration):
                     # "django_jinja.builtins.extensions.StaticFilesExtension",
                     # "django_jinja.builtins.extensions.DjangoFiltersExtension",
                     # "django_jinja.builtins.extensions.DjangoExtraFiltersExtension",
-                    "webpack_loader.contrib.jinja2ext.WebpackExtension",
+                    # "webpack_loader.contrib.jinja2ext.WebpackExtension",
                 ],
                 "context_processors": TEMPLATE_CONTEXT_PROCESSORS,
                 "autoescape": True,
