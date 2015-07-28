@@ -54,7 +54,8 @@ class Common(Configuration):
         'easy_thumbnails',
         'calendarium',
         'django_extensions',
-        # 'rest_framework',
+        'rest_framework',
+        'rest_framework_gis',
         # 'webpack_loader',
     )
 
@@ -115,13 +116,13 @@ class Common(Configuration):
 
     # Rest framework settings
 
-    # REST_FRAMEWORK = {
-    #     'DEFAULT_PERMISSION_CLASSES': (
-    #         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly',
-    #     ),
-    #     'DEFAULT_PAGINATION_CLASS': 'api.pagination.DateRangePagination',
-    # }
-    #
+    REST_FRAMEWORK = {
+        'DEFAULT_PERMISSION_CLASSES': (
+            'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly',
+        ),
+        # 'DEFAULT_PAGINATION_CLASS': 'api.pagination.DateRangePagination',
+    }
+
     # Templates
 
     # List of processors used by RequestContext to populate the context.
