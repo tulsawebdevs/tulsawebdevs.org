@@ -5,7 +5,7 @@ from events.models import Location
 
 
 class LocationAdmin(OSMGeoAdmin):
-    fields = ('name', 'address', 'location',)
+    fields = ('name', 'address', 'location', 'meta')
     list_display = ('name', 'address', 'location',)
     default_zoom = 8
 

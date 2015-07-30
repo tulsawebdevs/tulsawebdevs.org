@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 
 from django.db import models, migrations
 import django.contrib.gis.db.models.fields
+import django_pgjson.fields
 
 
 class Migration(migrations.Migration):
@@ -14,10 +15,12 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Location',
             fields=[
-                ('id', models.AutoField(verbose_name='ID', auto_created=True, primary_key=True, serialize=False)),
-                ('name', models.CharField(verbose_name='Location Name', max_length=255)),
-                ('address', models.CharField(verbose_name='Address', max_length=255, unique=True)),
-                ('location', django.contrib.gis.db.models.fields.PointField(verbose_name='Location', blank=True, null=True, srid=4326)),
+                ('id', models.AutoField(auto_created=True, serialize=False, primary_key=True, verbose_name='ID')),
+                ('name', models.CharField(max_length=255, verbose_name='Location Name')),
+                ('address', models.CharField(blank=True, max_length=255, null=True, unique=True, verbose_name='Address')),
+                ('location', django.contrib.gis.db.models.fields.PointField(blank=True, srid=4326, null=True, verbose_name='Location')),
+                ('location_hash', models.CharField(max_length=32, null=True)),
+                ('meta', django_pgjson.fields.JsonField(blank=True, null=True, verbose_name='META')),
             ],
         ),
     ]
