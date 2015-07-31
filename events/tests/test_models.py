@@ -61,6 +61,25 @@ class LocationModelTest(TestCase):
 
     @fudge.patch('events.models.md5')
     @fudge.patch('events.models.geocode')
+    def test_save_with_missed_location_hash_and_address_present_geocode_fail(self, md5, geocode):
+        self.location.location = Point([123, 123])
+        self.location.location_hash = 'not this'
+
+        md5.expects_call().with_args(b'Location Name@an address').returns('this')
+        geocode.expects_call().with_args('an address').returns(None)
+
+        self.location.save()
+
+        # meta had error state
+        self.assertEqual(
+            self.location.meta, {'geocoded': False})
+        # Location is unset
+        self.assertEqual(self.location.location, None)
+        # hash is not updated
+        self.assertEqual(self.location.location_hash, 'not this')
+
+    @fudge.patch('events.models.md5')
+    @fudge.patch('events.models.geocode')
     def test_save_with_missed_location_hash_no_address(self, md5, geocode):
         self.location.location = Point([123, 123])
         self.location.location_hash = 'not this'
