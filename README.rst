@@ -10,7 +10,7 @@ Tulsa Web Devs
     :alt: The code coverage
     :target: https://coveralls.io/r/tulsawebdevs/tulsawebdevs.org?branch=master
 
-.. image:: image:: https://img.shields.io/requires/github/tulsawebdevs/tulsawebdevs.org/master.svg
+.. image:: https://img.shields.io/requires/github/tulsawebdevs/tulsawebdevs.org/master.svg
      :target: https://requires.io/github/tulsawebdevs/tulsawebdevs.org/requirements/?branch=master
      :alt: Requirements Status
 
