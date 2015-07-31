@@ -2,17 +2,28 @@
 Tulsa Web Devs
 ==============
 
-.. image:: https://travis-ci.org/tulsawebdevs/tulsawebdevs.org.png?branch=master
+.. image:: https://img.shields.io/travis/tulsawebdevs/tulsawebdevs.org/master.svg
     :alt: The status of Travis continuous integration tests
     :target: https://travis-ci.org/tulsawebdevs/tulsawebdevs.org
 
-.. image:: https://coveralls.io/repos/tulsawebdevs/tulsawebdevs.org/badge.png?branch=master
+.. image:: https://img.shields.io/coveralls/tulsawebdevs/tulsawebdevs.org/master.svg
     :alt: The code coverage
     :target: https://coveralls.io/r/tulsawebdevs/tulsawebdevs.org?branch=master
 
-.. image:: https://requires.io/github/tulsawebdevs/tulsawebdevs.org/requirements.svg?branch=master
+.. image:: image:: https://img.shields.io/requires/github/tulsawebdevs/tulsawebdevs.org/master.svg
      :target: https://requires.io/github/tulsawebdevs/tulsawebdevs.org/requirements/?branch=master
      :alt: Requirements Status
+
+.. image:: https://img.shields.io/badge/license-GPLv3-blue.svg
+     :alt: License
+
+.. image:: https://img.shields.io/github/stars/tulsawebdevs/tulsawebdevs.org.svg
+
+.. image:: https://img.shields.io/github/forks/tulsawebdevs/tulsawebdevs.org.svg
+
+.. image:: https://img.shields.io/github/issues/tulsawebdevs/tulsawebdevs.org.svg
+
+.. image:: https://img.shields.io/badge/awesome-yes-brightgreen.svg
 
 .. Enable after deployment
 .. .. image:: https://badge.fury.io/py/tulsawebdevs.org.png
