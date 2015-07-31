@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Django settings for tulsawebdevs.org project.
 
@@ -11,6 +12,7 @@ For the configurations module and it's values, see
 https://github.com/jezdez/django-configurations
 """
 
+import sys
 from os.path import dirname, abspath, join
 
 from configurations import Configuration, values
@@ -52,7 +54,9 @@ class Common(Configuration):
         'filer',
         'mptt',
         'easy_thumbnails',
+        # requires the above
         'calendarium',
+
         'django_extensions',
         'rest_framework',
         'rest_framework_gis',
@@ -250,3 +254,13 @@ class Common(Configuration):
             },
         }
     }
+
+    # Detect that we're running tests
+    TESTING = sys.argv[1:2] == ['test']
+
+    # Django nose
+    TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+
+    # memory db for testing
+    if TESTING:
+        DATABASES = values.DatabaseURLValue('postgis://localhost/twd-test')

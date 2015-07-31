@@ -1,0 +1,11 @@
+# Config file for automatic testing at travis-ci.org
+
+language: python
+install: pip install tox
+script: tox
+env:
+  - TOXENV=py27-django18
+  - TOXENV=py34-django18
+  - TOXENV=docs
+  - TOXENV=flake8
+  - TOXENV=coverage

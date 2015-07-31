@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from hashlib import md5
 
 from django.contrib.gis.db import models
@@ -9,7 +10,7 @@ from utils.geo import geocode
 
 
 class Location(models.Model):
-    """Geo and meta representation of the location an event can occur"""
+    """Geo and meta representation of a location"""
 
     name = models.CharField(_('Location Name'), max_length=255)
     address = models.CharField(_('Address'), max_length=255, blank=True, null=True, unique=True)
@@ -26,8 +27,13 @@ class Location(models.Model):
         location_hash = md5(
             '{}@{}'.format(self.name, self.address).encode('utf-8'))
         if self.location_hash != location_hash and self.address:
-            self.meta = geocode(self.address).raw
-            pos = [float(coord) for coord in [self.meta.get('lon'), self.meta.get('lat')]]
-            self.location = Point(*pos)
-            self.location_hash = location_hash
+            location_geocode = geocode(self.address)
+            if location_geocode:
+                self.meta = location_geocode.raw
+                pos = [float(coord) for coord in [self.meta.get('lon'), self.meta.get('lat')]]
+                self.location = Point(*pos)
+                self.location_hash = location_hash
+            else:
+                self.meta = {"geocoded": False}
+                self.location = None
         super(Location, self).save(**kwargs)
