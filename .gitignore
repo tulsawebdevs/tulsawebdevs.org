@@ -58,3 +58,5 @@ target/
 
 # Development
 .env
+
+.noseids
