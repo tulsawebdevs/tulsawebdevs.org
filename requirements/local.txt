@@ -20,7 +20,7 @@ mccabe==0.3.1
 pep8==1.5.7  # rq.filter: >=1.5,<1.6
 pyflakes==0.9.2
 flake8==2.4.1
-pep257==0.5.0
+pep257==0.6.0
 flake8-docstrings==0.2.1
 
 # Code coverage
@@ -36,13 +36,13 @@ coverage==3.7.1
 #pyroma==1.8.2
 
 # Multi-env test runner
-virtualenv==13.0.3
+virtualenv==13.1.0
 py==1.4.30
 tox==2.1.1
 
 # Better interactive debugging
 gnureadline==6.3.3
-ipython==3.2.0
+ipython==3.2.1
 ipdb==0.8.1
 ipdbplugin==1.4.2
 

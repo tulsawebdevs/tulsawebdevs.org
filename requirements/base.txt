@@ -5,9 +5,9 @@ Django==1.8.3
 git+https://github.com/jezdez/django-configurations.git@5ece107044
 
 # database
-psycopg2==2.6
+psycopg2==2.6.1
 dj-database-url==0.3.0
-django-pgjson==0.2.3
+django-pgjson==0.3.1
 
 # templates
 django-jinja==1.4.1
@@ -24,4 +24,4 @@ djangorestframework-gis==0.9.3
 geopy==1.10.0
 
 # static file serving
-whitenoise==2.0
+whitenoise==2.0.2
