@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
-'''
+"""
 Local Configurations
 
 - Runs in Debug mode
-'''
+"""
 
 import os
 

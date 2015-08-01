@@ -19,7 +19,8 @@ import os
 cwd = os.getcwd()
 parent = os.path.dirname(cwd)
 sys.path.append(parent)
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "usergroups.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config")
+os.environ.setdefault("DJANGO_CONFIGURATION", "Local")
 
 from usergroups import __version__
 
@@ -31,7 +32,11 @@ from usergroups import __version__
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = ['sphinx.ext.autodoc', 'sphinx.ext.viewcode']
+extensions = [
+    'sphinx.ext.autodoc',
+    'sphinx.ext.viewcode',
+    'configurations'
+]
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']

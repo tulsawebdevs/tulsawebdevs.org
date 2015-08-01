@@ -9,10 +9,7 @@ from events.models import Location
 
 
 class LocationModelTest(TestCase):
-
-    """
-    The Location model supports storing machine and human readable locations.
-    """
+    """The Location model supports storing machine and human readable locations."""
 
     def setUp(self):
         self.location = mommy.prepare(

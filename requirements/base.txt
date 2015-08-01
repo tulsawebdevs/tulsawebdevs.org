@@ -1,7 +1,7 @@
 Django==1.8.3
 
 # Settings management
-#django-configurations==0.8
+#django-configurations==0.9
 git+https://github.com/jezdez/django-configurations.git@5ece107044
 
 # database

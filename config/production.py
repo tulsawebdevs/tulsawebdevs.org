@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
-'''
+"""
 Production Configurations
 
 - Use djangosecure
-'''
+"""
 from configurations import values
 
 from .common import Common

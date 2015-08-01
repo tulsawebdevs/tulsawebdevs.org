@@ -36,12 +36,6 @@ requirements = [
     'Django>=1.8',
 ]
 
-test_requirements = [
-    'dj_database_url',
-    'django_nose',
-    'django_extensions',
-]
-
 setup(
     name='tulsawebdevs.org',
     version=version,
@@ -73,6 +67,5 @@ setup(
         'Programming Language :: Python :: 3.3',
         'Programming Language :: Python :: 3.4',
     ],
-    test_suite='usergroups.runtests.runtests',
-    tests_require=test_requirements
+    test_suite='usergroups.runtests.runtests'
 )

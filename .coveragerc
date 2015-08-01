@@ -1,5 +1,12 @@
 [run]
 branch = True
+source =
+    api
+    events
+    talks
+    usergroups
+    utils
 
 [report]
-source = events
+omit =
+    **/migrations/*.py

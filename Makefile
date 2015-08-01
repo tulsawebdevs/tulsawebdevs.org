@@ -59,7 +59,7 @@ test-all:
 
 coverage-console:
 	coverage erase
-	coverage run --source events setup.py test
+	coverage run manage.py test
 	coverage report -m
 
 coverage: coverage-console

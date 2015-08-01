@@ -7,19 +7,16 @@ include LICENSE
 include Makefile
 include Procfile
 include README.rst
-include app.json
 include manage.py
 include requirements.txt
-include requirements-dev.txt
 
 recursive-include docs Makefile conf.py *.rst make.bat .keep
 recursive-include static .keep
 recursive-include events *.py
 recursive-include events/static *.css *.map *.eot *.svg *.ttf *.woff *.js .keep
-recursive-include events/jinja2 *.jinja2
+recursive-include events/tempates *.jinja2
 recursive-include events/tests *.py
 recursive-include usergroups *.py
 
 recursive-exclude * *.py[co]
 recursive-exclude * __pycache__
-
