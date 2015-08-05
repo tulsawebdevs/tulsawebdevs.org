@@ -1,5 +1,6 @@
 # Config file for automatic testing at travis-ci.org
 
+sudo: false
 language: python
 install: pip install tox
 script: tox
@@ -11,3 +12,4 @@ env:
   - TOXENV=coverage
 addons:
   postgresql: "9.4"
+after_success: coveralls
