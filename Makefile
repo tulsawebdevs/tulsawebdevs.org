@@ -54,6 +54,10 @@ install-jslint:
 test:
 	./manage.py test
 
+# Requires nose-watch and rednose to be pip installed
+test-watch:
+	./manage.py test --with-watch --rednose
+
 test-all:
 	tox --skip-missing-interpreters
 
