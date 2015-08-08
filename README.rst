@@ -42,7 +42,7 @@ Tulsa Web Devs
 
 code that runs tulsawebdevs.org
 
-* License: GPL 3
+* License: GPLv3
 * Documentation: https://tulsawebdevs.org.readthedocs.org
 * Generated from: https://github.com/jwhitlock/cookiecutter-django-jw.git
 
