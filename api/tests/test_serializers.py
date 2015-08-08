@@ -7,9 +7,11 @@ from events.models import Location
 
 
 class TestLocationSerializer(TestCase):
+    def setUp(self):
+        self.serializer = LocationSerializer()
 
     def test_mro(self):
-        self.assertIsInstance(LocationSerializer(), GeoFeatureModelSerializer)
+        self.assertIsInstance(self.serializer, GeoFeatureModelSerializer)
 
     def test_meta_class(self):
         meta = LocationSerializer.Meta
