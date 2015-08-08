@@ -258,6 +258,10 @@ class Common(Configuration):
     # Detect that we're running tests
     TESTING = sys.argv[1:2] == ['test']
 
+    # Sessions
+    SESSION_ENGINE = 'redis_sessions.session'
+    SESSION_REDIS_URL = values.Value('redis://localhost/4')
+
     # Django nose
     TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 
