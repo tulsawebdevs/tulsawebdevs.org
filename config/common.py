@@ -49,12 +49,8 @@ class Common(Configuration):
 
     # Third-party apps, patches, fixes
     THIRD_PARTY_APPS = (
-        # Required by calendarium
-        'filer',
         'mptt',
-        'easy_thumbnails',
-        # requires the above
-        'calendarium',
+        'recurrence',
 
         'django_extensions',
         'rest_framework',
