@@ -36,7 +36,6 @@ class TestEventModel(TestCase):
         until = datetime(2015, 3, 2, 16, 00)
         occurrences = self.event.get_occurrences(self.main_start, until)
 
-        import ipdb; ipdb.set_trace()
         self.assertQuerysetEqual([oc for oc in occurrences], map(repr, [first_occ, second_occ]))
 
     def test_get_occurrences_in_range_with_non_persisted(self):
