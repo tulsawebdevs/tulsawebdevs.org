@@ -6,8 +6,6 @@ from django.core.exceptions import ValidationError
 from django.test import TestCase
 from django_extensions.db.models import TimeStampedModel, TitleSlugDescriptionModel
 from model_mommy import mommy
-import fudge
-
 
 from events.models.mixins import EventModelMixin
 
@@ -21,6 +19,7 @@ class TestEventModelMixin(TestCase):
 
     def test_Meta(self):
         self.assertEqual(EventModelMixin._meta.abstract, True)
+        self.assertEqual(EventModelMixin._meta.ordering, ('start',))
 
     def test_mro(self):
         self.assertIsInstance(self.model, TimeStampedModel)

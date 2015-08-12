@@ -1,2 +1,3 @@
 # -*- coding: utf-8 -*-
-from .meta import Location
+from .events import Event, EventCategory, Occurrence  # noqa
+from .meta import Location  # noqa

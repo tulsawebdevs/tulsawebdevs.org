@@ -4,7 +4,6 @@ from hashlib import md5
 from django.contrib.gis.db import models
 from django.contrib.gis.geos import Point
 from django.utils.translation import ugettext_lazy as _
-from django_extensions.db.models import TimeStampedModel
 from django_pgjson.fields import JsonField
 
 from utils.geo import geocode

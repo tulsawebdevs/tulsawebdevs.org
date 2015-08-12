@@ -32,8 +32,9 @@ class EventModelMixin(TimeStampedModel, TitleSlugDescriptionModel):
         super().clean()
 
         if (self.end and self.start) and self.end < self.start:
-            #REVIEW: would be nice if this was a part of the field validators
+            # REVIEW: would be nice if this was a part of the field validators
             raise ValidationError("Start time must be earlier than end time.")
 
     class Meta:
         abstract = True
+        ordering = ('start', )
