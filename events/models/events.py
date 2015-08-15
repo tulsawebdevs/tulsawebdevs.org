@@ -79,13 +79,14 @@ class Event(EventModelMixin):
             occurrence_start = next(occurrence_start_generator)
 
     def get_occurrences(self, start, end=None):
+        """Return a generator that outputs occurrences in the given range"""
         # get persisted occurrences from the database in that range
         persisted_occurrences = self.occurrences.filter(start__gte=start, end__lte=end)
         occurrence_replacer = OccurrenceReplacer(persisted_occurrences)
-        occurence_generator = self._get_occurrence_generator(start, end)
+        occurrence_generator = self._get_occurrence_generator(start, end)
         additional_occurrences = occurrence_replacer.get_additional_occurrences(start, end)
 
-        occurrence = next(occurence_generator)
+        occurrence = next(occurrence_generator)
         while not end or (occurrence.start < end or any(additional_occurrences)):
             if occurrence_replacer.has_occurrence(occurrence):
                 persisted_occ = occurrence_replacer.get_occurrence(occurrence)
@@ -101,7 +102,7 @@ class Event(EventModelMixin):
 
             if not final_occurrence.cancelled:
                 yield final_occurrence
-            occurrence = next(occurence_generator)
+            occurrence = next(occurrence_generator)
 
 
 class EventCategory(MPTTModel):
