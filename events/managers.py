@@ -24,17 +24,16 @@ class EventModelManager(models.Manager):
         # end_recurring_period.
         # For events without a rule, I fetch only the relevant ones.
 
-        qs = self.get_queryset()
+        qs = self.get_queryset().filter(start__lt=end)
 
         if category:
-            qs = qs.filter(start__lt=end)
-            relevant_events = qs.filter(Q(category=category) | Q(category__parent=category))
+            qs = qs.filter(Q(category=category) | Q(category__parent=category))
         else:
-            relevant_events = qs.filter(start__lt=end)
+            qs = qs.filter(start__lt=end)
         # get all occurrences for those events that don't already have a
         # persistent match and that lie in this period.
         all_occurrences = []
-        for event in relevant_events:
+        for event in qs:
             all_occurrences.extend(event.get_occurrences(start, end))
 
         # sort and return
