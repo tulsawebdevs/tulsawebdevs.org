@@ -13,33 +13,72 @@ class TestEventModel(TestCase):
 
     def setUp(self):
         # main start date
-        self.main_start = datetime(2015, 1, 1, 12, 00)
-        self.main_end = datetime(2015, 1, 1, 16, 00)
+        self.main_start = datetime(2015, 1, 1, 18, 00)
+        self.main_end = datetime(2015, 1, 1, 20, 00)
 
+        # Create an event with a recurrence of monthly on the 3rd monday.
         self.event = mommy.make(
             'events.Event', start=self.main_start, end=self.main_end, recurrences='RRULE:FREQ=MONTHLY;BYDAY=3MO')
 
-    def test_get_occurrences_none_persisted(self):
-        until = datetime(2015, 3, 2, 16, 00)
-        occurrences = self.event.get_occurrences(self.main_start, until)
-        self.assertQuerysetEqual(occurrences, [])
+        self.first_occ = Occurrence.from_event(self.event, datetime(2015, 1, 18, 16, 00))
+        self.first_occ.save()
+        self.second_occ = Occurrence.from_event(self.event, datetime(2015, 2, 18, 16, 00))
+        self.second_occ.save()
 
-    def test_get_occurrences_in_range(self):
-        first_occ = Occurrence.from_event(self.event, datetime(2015, 1, 3, 16, 00))
-        first_occ.save()
-        second_occ = Occurrence.from_event(self.event, datetime(2015, 2, 6, 16, 00))
-        second_occ.save()
-        # Shouldn't show up in the results
-        outofrange_occ = Occurrence.from_event(self.event, datetime(2025, 2, 6, 16, 00))
-        outofrange_occ.save()
+    # def test_get_occurrences_none_persisted(self):
+    #     until = datetime(2015, 3, 2, 16, 00)
+    #     occurrences = self.event.get_occurrences(self.main_start, until)
+    #     self.assertQuerysetEqual(occurrences, [])
+    #
+    # def test_get_occurrences_in_range(self):
+    #     first_occ = Occurrence.from_event(self.event, datetime(2015, 1, 3, 16, 00))
+    #     first_occ.save()
+    #     second_occ = Occurrence.from_event(self.event, datetime(2015, 2, 6, 16, 00))
+    #     second_occ.save()
+    #     # Shouldn't show up in the results
+    #     outofrange_occ = Occurrence.from_event(self.event, datetime(2025, 2, 6, 16, 00))
+    #     outofrange_occ.save()
+    #
+    #     until = datetime(2015, 3, 2, 16, 00)
+    #     occurrences = self.event.get_occurrences(self.main_start, until)
+    #
+    #     self.assertQuerysetEqual([oc for oc in occurrences], map(repr, [first_occ, second_occ]))
+    #
+    # @fudge.patch(
+    #     'events.models.events.Event.occurrences',
+    #     'events.models.events.Event._get_occurrence_generator',
+    #     'events.models.events.OccurrenceReplacer')
+    # def test_get_occurrences_none_returned(
+    #     self,
+    #     mock_occurrences,
+    #     mock_get_occurrence_generator,
+    #     mock_OccurrenceReplater):
+    #
+    #     occ_start = datetime(2015, 1, 1)
+    #     occ_end = datetime(2015, 3, 1)
+    #
+    #     # Getting persisted occurrences
+    #     mock_persisted_occ = fudge.Fake('persisted_occurrences')
+    #     mock_occurrences.is_a_stub()
+    #     mock_occurrences.expects('filter').with_args(start__gte=occ_start, end__lte=occ_end).returns(mock_persisted_occ)
+    #
+    #     # OccurrenceReplacer init and methods
+    #     mock_occurrence_replacer_instance = fudge.Fake('occurrence_replacer').is_a_stub()
+    #     mock_occurrence_replacer_instance.expects('get_additional_occurrences').with_args(occ_start, occ_end)
+    #     mock_OccurrenceReplater.expects_call().with_args(mock_persisted_occ).returns(mock_occurrence_replacer_instance)
+    #
+    #     # _get_occurrence_generator is called and returns
+    #     from unittest.mock import MagicMock
+    #     mock_occurrence_generator = MagicMock()
+    #     mock_occurrence_generator.iter.return_value.__iter__.return_value = iter([self.first_occ, self.second_occ])
+    #     (mock_get_occurrence_generator.expects_call().with_args(occ_start, occ_end).returns(mock_occurrence_generator))
+    #
+    #     occurrences = self.event.get_occurrences(occ_start, occ_end)
+    #
+    #     self.assertQuerysetEqual([oc for oc in occurrences], map(repr, [self.first_occ, self.second_occ]))
 
-        until = datetime(2015, 3, 2, 16, 00)
-        occurrences = self.event.get_occurrences(self.main_start, until)
-
-        self.assertQuerysetEqual([oc for oc in occurrences], map(repr, [first_occ, second_occ]))
-
-    def test_get_occurrences_in_range_with_non_persisted(self):
-        pass
+    # def test_get_occurrences_in_range_with_non_persisted(self):
+    #     pass
 
 
 class TestOccurenceModel(TestCase):
