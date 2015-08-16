@@ -12,6 +12,6 @@ logger = logging.getLogger(__name__)
 def geocode(address):
     try:
         return geolocator.geocode(address)
-    except GeopyError:
-        logger.exception()
+    except GeopyError as e:
+        logger.exception(e)
         return None
