@@ -32,5 +32,5 @@ class OccurrenceReplacer(object):
         occurrences = []
         for key, occurrence in self.lookup.items():
             if (end and occurrence.start < end) and occurrence.end >= start and not occurrence.cancelled:
-                return occurrences.append(occurrence)
+                occurrences.append(occurrence)
         return occurrences
