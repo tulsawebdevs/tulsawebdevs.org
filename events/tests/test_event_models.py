@@ -111,6 +111,7 @@ class TestOccurenceModel(TestCase):
         self.assertEqual(occ.end, orig_end)
         self.assertEqual(occ.original_end, orig_end)
         self.assertEqual(occ.event, self.event)
+        self.assertEqual(occ.location, self.event.location)
 
     @fudge.patch(
         'events.models.Occurrence.update_template_title',
@@ -126,6 +127,7 @@ class TestOccurenceModel(TestCase):
         self.assertEqual(occ.end, orig_end)
         self.assertEqual(occ.original_end, orig_end)
         self.assertEqual(occ.event, self.event)
+        self.assertEqual(occ.location, self.event.location)
 
     @fudge.patch(
         'events.models.Occurrence.update_template_title',
@@ -142,3 +144,5 @@ class TestOccurenceModel(TestCase):
         orig_end = datetime(2015, 2, 1, 16, 00)
         self.assertEqual(occ.end, orig_end)
         self.assertEqual(occ.event, self.event)
+        self.assertEqual(occ.location, self.event.location)
+

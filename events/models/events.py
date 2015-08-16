@@ -185,7 +185,8 @@ class Occurrence(EventModelMixin):
 
         occurrence = cls(
             event=event, start=occurrence_start, end=occurrence_end,
-            original_start=occurrence_start, original_end=occurrence_end)
+            original_start=occurrence_start, original_end=occurrence_end,
+            location=event.location)
 
         if use_templates:
             occurrence.update_template_title()
