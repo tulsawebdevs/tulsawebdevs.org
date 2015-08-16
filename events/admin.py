@@ -19,9 +19,20 @@ class LocationAdmin(OSMGeoAdmin):
 class EventAdmin(admin.ModelAdmin):
     """Custom admin for the ``Event`` model."""
     model = Event
-    fields = (
-        'title', 'start', 'end', 'description', 'category',
-        'recurrences', )
+    fieldsets = (
+        ('', {
+            'fields': (
+                ('title', 'title_template',),
+                ('description', 'description_template',)
+            )
+        }),
+        ('Event times', {
+            'fields': ('start', 'end', 'recurrences',)
+        }),
+        ('Event meta data', {
+            'fields': ('category', 'location')
+        })
+    )
     list_display = (
         'title', 'start', 'end', 'category', )
     search_fields = ('title', 'description', )

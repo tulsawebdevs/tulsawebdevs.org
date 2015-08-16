@@ -32,13 +32,15 @@ class Event(EventModelMixin):
         null=True, blank=True,
     )
 
-    # description_template = models.TextField(
-    #     null=True, blank=True
-    # )
+    title_template = models.TextField(
+        null=True, blank=True,
+        help_text="jinja2 template used to render occurrence titles"
+    )
 
-    # title_template = models.TextField(
-    #     null=True, blank=True
-    # )
+    description_template = models.TextField(
+        null=True, blank=True,
+        help_text="jinja2 template used to render occurrence descriptions"
+    )
 
     recurrences = RecurrenceField()
 

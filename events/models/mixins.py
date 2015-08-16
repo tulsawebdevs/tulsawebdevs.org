@@ -4,6 +4,8 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django_extensions.db.models import TimeStampedModel, TitleSlugDescriptionModel
 
+from .meta import Location
+
 
 class EventModelMixin(TimeStampedModel, TitleSlugDescriptionModel):
     """
@@ -24,6 +26,10 @@ class EventModelMixin(TimeStampedModel, TitleSlugDescriptionModel):
     end = models.DateTimeField(
         verbose_name=_('End time'),
     )
+
+    location = models.ForeignKey(
+        Location,
+        null=True, blank=True)
 
     def __str__(self):
         return "{title} ({start})".format(title=self.title, start=arrow.get(self.start).format('MMM D, YYYY'))
