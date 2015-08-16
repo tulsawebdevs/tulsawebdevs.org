@@ -2,6 +2,7 @@
 from datetime import datetime
 
 from django.db import models
+from django.template import engines
 from django.utils.translation import ugettext_lazy as _
 from django_extensions.db.fields import AutoSlugField
 from mptt.models import MPTTModel, TreeForeignKey, TreeManager
@@ -198,8 +199,28 @@ class Occurrence(EventModelMixin):
     def category(self):
         return self.event.category
 
+
+    def get_template_context(self):
+        return {
+            'occ': self,
+            'event': self.event
+        }
+
+    def set_template(self, field, template_string=None):
+        assert isinstance(field, str)
+        if not template_string:
+            template_string = getattr(self, 'default_{}_template'.format(field))
+        engine = engines['jinja2']
+        template = engine.from_string(template_string)
+        rendered = template.render(self.get_template_context())
+        setattr(self, field, rendered)
+
+    default_title_template = "{{ occ.start|date('M') }} - {{event.title}}"
+
     def update_template_title(self):
-        self.title = 'template title'
+        self.set_template('title', self.event.title_template)
+
+    default_description_template = "{{ event.description }}"
 
     def update_template_description(self):
-        self.description = 'template description'
+        self.set_template('description', self.event.description_template)

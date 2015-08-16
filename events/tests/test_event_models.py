@@ -7,6 +7,7 @@ from model_mommy import mommy
 import fudge
 
 from events.models import Occurrence
+import events.models.events as events_models
 
 
 class TestEventModel(TestCase):
@@ -88,7 +89,11 @@ class TestOccurenceModel(TestCase):
         self.main_end = datetime(2015, 1, 1, 16, 00)
 
         self.event = mommy.make(
-            'events.Event', start=self.main_start, end=self.main_end, recurrences='RRULE:FREQ=MONTHLY;BYDAY=3MO')
+            'events.Event',
+            start=self.main_start, end=self.main_end,
+            title_template='jinja title template',
+            description_template='jinja description template',
+            recurrences='RRULE:FREQ=MONTHLY;BYDAY=3MO')
 
     def test_from_event_no_occurrence_start(self):
         with self.assertRaises(TypeError):
@@ -146,3 +151,96 @@ class TestOccurenceModel(TestCase):
         self.assertEqual(occ.event, self.event)
         self.assertEqual(occ.location, self.event.location)
 
+    def test_get_template_context(self):
+        # Create occurrence
+        occurrence_start = datetime(2015, 2, 1, 12, 00)
+        occurrence_end = datetime(2015, 2, 1, 18, 00)
+        occ = Occurrence.from_event(self.event, occurrence_start, occurrence_end)
+
+        context = occ.get_template_context()
+
+        self.assertEqual(context, {
+            'occ': occ,
+            'event': self.event
+        })
+
+    @fudge.patch('events.models.Occurrence.get_template_context')
+    def test_set_template(self, mock_get_template_context):
+        # Create occurrence
+        occurrence_start = datetime(2015, 2, 1, 12, 00)
+        occurrence_end = datetime(2015, 2, 1, 18, 00)
+        occ = Occurrence.from_event(self.event, occurrence_start, occurrence_end)
+
+        # getting context returns mock context string
+        mock_get_template_context.is_callable().returns('context')
+
+        # Jinja template engine is selected and is passed the template string, render is called on the template
+        mock_jinja_engine = fudge.Fake()
+        mock_template = mock_jinja_engine.expects('from_string').with_args('jinja template').returns_fake()
+        mock_template.expects('render').with_args('context').returns('rendered context')
+
+        mock_engines = {
+            'jinja2': mock_jinja_engine
+        }
+
+        patched_engines = fudge.patch_object(events_models, 'engines', mock_engines)
+
+        # call set_template
+        occ.set_template('a_field', 'jinja template')
+
+        self.assertEqual(occ.a_field, 'rendered context')
+
+        patched_engines.restore()
+
+        pass
+
+    @fudge.patch('events.models.Occurrence.get_template_context')
+    def test_set_template_no_template_string(self, mock_get_template_context):
+        # Create occurrence
+        occurrence_start = datetime(2015, 2, 1, 12, 00)
+        occurrence_end = datetime(2015, 2, 1, 18, 00)
+        occ = Occurrence.from_event(self.event, occurrence_start, occurrence_end)
+
+        # getting context returns mock context string
+        mock_get_template_context.is_callable().returns('context')
+
+        # Expact the default template to be set on the occurrence
+        occ.default_a_field_template = 'default jinja template'
+
+        # Jinja template engine is selected and is passed the template string, render is called on the template
+        mock_jinja_engine = fudge.Fake()
+        mock_template = mock_jinja_engine.expects('from_string').with_args('default jinja template').returns_fake()
+        mock_template.expects('render').with_args('context').returns('rendered context')
+
+        mock_engines = {
+            'jinja2': mock_jinja_engine
+        }
+
+        patched_engines = fudge.patch_object(events_models, 'engines', mock_engines)
+
+        # call set_template
+        occ.set_template('a_field')
+
+        self.assertEqual(occ.a_field, 'rendered context')
+
+        patched_engines.restore()
+
+    @fudge.patch('events.models.Occurrence.set_template')
+    def test_update_template_title(self, mock_set_template):
+        mock_set_template.is_callable().with_args('title', 'jinja title template')
+
+        occurrence_start = datetime(2015, 2, 1, 12, 00)
+        occurrence_end = datetime(2015, 2, 1, 18, 00)
+        occ = Occurrence.from_event(self.event, occurrence_start, occurrence_end)
+
+        occ.update_template_title()
+
+    @fudge.patch('events.models.Occurrence.set_template')
+    def test_update_template_description(self, mock_set_template):
+        mock_set_template.is_callable().with_args('description', 'jinja description template')
+
+        occurrence_start = datetime(2015, 2, 1, 12, 00)
+        occurrence_end = datetime(2015, 2, 1, 18, 00)
+        occ = Occurrence.from_event(self.event, occurrence_start, occurrence_end)
+
+        occ.update_template_description()
