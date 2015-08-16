@@ -141,7 +141,9 @@ class Common(Configuration):
 
     TEMPLATES = [
         {
+            #https://niwinz.github.io/django-jinja/#_user_guide_for_django_1_8
             "BACKEND": "django_jinja.backend.Jinja2",
+            "NAME": "jinja2",
             "APP_DIRS": True,
             "OPTIONS": {
                 "match_extension": ".jinja",
@@ -158,8 +160,8 @@ class Common(Configuration):
                     # "django_jinja.builtins.extensions.TimezoneExtension",
                     # "django_jinja.builtins.extensions.UrlsExtension",
                     # "django_jinja.builtins.extensions.StaticFilesExtension",
-                    # "django_jinja.builtins.extensions.DjangoFiltersExtension",
-                    # "django_jinja.builtins.extensions.DjangoExtraFiltersExtension",
+                    "django_jinja.builtins.extensions.DjangoFiltersExtension",
+                    "django_jinja.builtins.extensions.DjangoExtraFiltersExtension",
                     # "webpack_loader.contrib.jinja2ext.WebpackExtension",
                 ],
                 "context_processors": TEMPLATE_CONTEXT_PROCESSORS,
