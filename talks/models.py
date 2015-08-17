@@ -14,7 +14,7 @@ class Speaker(TimeStampedModel):
     :user: Optional user to relate the speaker to
     :slug: Slug used in urls when looking up a speaker
     """
-    
+
     name = models.CharField(
         _('Name'),
         max_length=60,
