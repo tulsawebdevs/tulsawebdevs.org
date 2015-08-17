@@ -2,19 +2,19 @@
 from django.test import TestCase
 from rest_framework_gis.serializers import GeoFeatureModelSerializer
 
-from api.serializers import LocationSerializer
+from ..api.serializers import GeoLocationSerializer
 from events.models import Location
 
 
-class TestLocationSerializer(TestCase):
+class TestGeoLocationSerializer(TestCase):
     def setUp(self):
-        self.serializer = LocationSerializer()
+        self.serializer = GeoLocationSerializer()
 
     def test_mro(self):
         self.assertIsInstance(self.serializer, GeoFeatureModelSerializer)
 
     def test_meta_class(self):
-        meta = LocationSerializer.Meta
+        meta = GeoLocationSerializer.Meta
 
         self.assertEqual(meta.model, Location)
         self.assertEqual(meta.geo_field, 'location')

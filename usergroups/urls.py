@@ -4,6 +4,7 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r'^api/', include('api.urls', namespace='api')),
+    url(r'^events/', include('events.urls', namespace='events')),
     url(r'^admin/', include(admin.site.urls)),
 ]
 

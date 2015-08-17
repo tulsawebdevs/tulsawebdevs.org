@@ -141,7 +141,7 @@ class Common(Configuration):
 
     TEMPLATES = [
         {
-            #https://niwinz.github.io/django-jinja/#_user_guide_for_django_1_8
+            # https://niwinz.github.io/django-jinja/#_user_guide_for_django_1_8
             "BACKEND": "django_jinja.backend.Jinja2",
             "NAME": "jinja2",
             "APP_DIRS": True,

@@ -50,10 +50,10 @@ class TestEventModel(TestCase):
     #     'events.models.events.Event._get_occurrence_generator',
     #     'events.models.events.OccurrenceReplacer')
     # def test_get_occurrences_none_returned(
-    #     self,
-    #     mock_occurrences,
-    #     mock_get_occurrence_generator,
-    #     mock_OccurrenceReplater):
+    #         self,
+    #         mock_occurrences,
+    #         mock_get_occurrence_generator,
+    #         mock_OccurrenceReplater):
     #
     #     occ_start = datetime(2015, 1, 1)
     #     occ_end = datetime(2015, 3, 1)
@@ -61,18 +61,21 @@ class TestEventModel(TestCase):
     #     # Getting persisted occurrences
     #     mock_persisted_occ = fudge.Fake('persisted_occurrences')
     #     mock_occurrences.is_a_stub()
-    #     mock_occurrences.expects('filter').with_args(start__gte=occ_start, end__lte=occ_end).returns(mock_persisted_occ)
+    #     (mock_occurrences.expects('filter').with_args(start__gte=occ_start, end__lte=occ_end)
+    #         .returns(mock_persisted_occ))
     #
     #     # OccurrenceReplacer init and methods
     #     mock_occurrence_replacer_instance = fudge.Fake('occurrence_replacer').is_a_stub()
     #     mock_occurrence_replacer_instance.expects('get_additional_occurrences').with_args(occ_start, occ_end)
-    #     mock_OccurrenceReplater.expects_call().with_args(mock_persisted_occ).returns(mock_occurrence_replacer_instance)
+    #     (mock_OccurrenceReplater.expects_call().with_args(mock_persisted_occ)
+    #         .returns(mock_occurrence_replacer_instance))
     #
     #     # _get_occurrence_generator is called and returns
     #     from unittest.mock import MagicMock
     #     mock_occurrence_generator = MagicMock()
     #     mock_occurrence_generator.iter.return_value.__iter__.return_value = iter([self.first_occ, self.second_occ])
-    #     (mock_get_occurrence_generator.expects_call().with_args(occ_start, occ_end).returns(mock_occurrence_generator))
+    #     (mock_get_occurrence_generator.expects_call().with_args(occ_start, occ_end)
+    #         .returns(mock_occurrence_generator))
     #
     #     occurrences = self.event.get_occurrences(occ_start, occ_end)
     #

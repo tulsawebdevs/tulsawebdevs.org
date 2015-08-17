@@ -199,7 +199,6 @@ class Occurrence(EventModelMixin):
     def category(self):
         return self.event.category
 
-
     def get_template_context(self):
         return {
             'occ': self,

@@ -1,0 +1,6 @@
+{% for occ in occurrences %}
+  <h2>{{ occ.title }}</h2>
+  <!-- <h5>{{ occ.event.title }}</h5> -->
+  <p>{{ occ.description }}</p>
+  <time>{{ occ.start }}</time>
+{% endfor %}
