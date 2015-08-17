@@ -14,9 +14,17 @@ class Speaker(TimeStampedModel):
     :user: Optional user to relate the speaker to
     :slug: Slug used in urls when looking up a speaker
     """
-    name = models.CharField(_('Name'), max_length=60, blank=True, null=True, unique=True)
+    
+    name = models.CharField(
+        _('Name'),
+        max_length=60,
+        blank=True, null=True, unique=True)
+
     user = models.OneToOneField(
-        settings.AUTH_USER_MODEL, verbose_name=_('User'), blank=True, null=True, unique=True)
+        settings.AUTH_USER_MODEL,
+        verbose_name=_('User'),
+        blank=True, null=True, unique=True)
+
     slug = AutoSlugField(_('Slug'), populate_from='get_name')
 
     def get_name(self):
@@ -36,7 +44,11 @@ class Talk(TimeStampedModel, TitleSlugDescriptionModel):
     :speaker: designated speaker if not yet assigned.
     :accepted: Whether or not this talk has been accepted.
     """
-    speaker = models.ForeignKey(Speaker, blank=True, null=True)
+
+    speaker = models.ForeignKey(
+        Speaker, related_name='talks',
+        blank=True, null=True,)
+
     accepted = models.BooleanField(default=False)
 
     def __str__(self):
