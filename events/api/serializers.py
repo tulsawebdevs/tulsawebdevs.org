@@ -21,7 +21,7 @@ class GeoLocationSerializer(GeoFeatureModelSerializer):
         read_only_fields = ('location',)
 
 
-class EventSerializer(serializers.Serializer):
+class EventSerializer(serializers.ModelSerializer):
 
     resource_uri = serializers.HyperlinkedIdentityField(
         view_name='api:event-detail', read_only=True)
