@@ -24,13 +24,13 @@ If you are reporting a bug, please include:
 Fix Bugs
 ~~~~~~~~
 
-Look through the GitHub issues for bugs. Anything tagged with "bug"
+Look through the GitHub issues for bugs. Anything tagged with "[bug](https://github.com/tulsawebdevs/tulsawebdevs.org/labels/bug)"
 is open to whoever wants to implement it.
 
 Implement Features
 ~~~~~~~~~~~~~~~~~~
 
-Look through the GitHub issues for features. Anything tagged with "feature"
+Look through the GitHub issues for features. Anything tagged with "[feature](https://github.com/tulsawebdevs/tulsawebdevs.org/labels/feature)"
 is open to whoever wants to implement it.
 
 Write Documentation
