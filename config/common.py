@@ -31,9 +31,6 @@ class Common(Configuration):
     # See: https://docs.djangoproject.com/en/dev/ref/settings/#debug
     DEBUG = values.BooleanValue(False)
 
-    # See: https://docs.djangoproject.com/en/dev/ref/settings/#template-debug
-    TEMPLATE_DEBUG = DEBUG
-
     ALLOWED_HOSTS = []
 
     # APP CONFIGURATION
@@ -128,7 +125,7 @@ class Common(Configuration):
     # List of processors used by RequestContext to populate the context.
     # Each one should be a callable that takes the request object as its
     # only parameter and returns a dictionary to add to the context.
-    TEMPLATE_CONTEXT_PROCESSORS = (
+    DEFAULT_TEMPLATE_CONTEXT_PROCESSORS = (
         "django.contrib.auth.context_processors.auth",
         # "django.contrib.messages.context_processors.messages",
         "django.core.context_processors.debug",
@@ -139,12 +136,14 @@ class Common(Configuration):
         # "django.core.context_processors.tz",
     )
 
+    # https://niwinz.github.io/django-jinja/#_user_guide_for_django_1_8
     TEMPLATES = [
         {
-            # https://niwinz.github.io/django-jinja/#_user_guide_for_django_1_8
             "BACKEND": "django_jinja.backend.Jinja2",
             "NAME": "jinja2",
             "APP_DIRS": True,
+            # See: https://docs.djangoproject.com/en/dev/ref/settings/#template-debug
+            "TEMPLATE_DEBUG": DEBUG,
             "OPTIONS": {
                 "match_extension": ".jinja",
                 "match_regex": r"^(?!admin|debug_toolbar/).*",
@@ -164,7 +163,7 @@ class Common(Configuration):
                     "django_jinja.builtins.extensions.DjangoExtraFiltersExtension",
                     # "webpack_loader.contrib.jinja2ext.WebpackExtension",
                 ],
-                "context_processors": TEMPLATE_CONTEXT_PROCESSORS,
+                "context_processors": DEFAULT_TEMPLATE_CONTEXT_PROCESSORS,
                 "autoescape": True,
                 "auto_reload": DEBUG,
                 "translation_engine": "django.utils.translation",
@@ -174,8 +173,9 @@ class Common(Configuration):
             "BACKEND": "django.template.backends.django.DjangoTemplates",
             "DIRS": [],
             "APP_DIRS": True,
+            "TEMPLATE_DEBUG": DEBUG,
             "OPTIONS": {
-                "context_processors": TEMPLATE_CONTEXT_PROCESSORS
+                "context_processors": DEFAULT_TEMPLATE_CONTEXT_PROCESSORS
             },
         },
     ]

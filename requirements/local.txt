@@ -36,13 +36,13 @@ coverage==3.7.1
 #pyroma==1.8.2
 
 # Multi-env test runner
-virtualenv==13.1.0
+virtualenv==13.1.1
 py==1.4.30
 tox==2.1.1
 
 # Better interactive debugging
 gnureadline==6.3.3
-ipython==3.2.1
+ipython==4.0.0
 ipdb==0.8.1
 ipdbplugin==1.4.2
 
