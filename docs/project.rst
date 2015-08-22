@@ -14,7 +14,7 @@ a process like this:
     repo_name (default is "boilerplate")? tulsawebdevs.org
     project_name (default is "Python Boilerplate")? Tulsa Web Devs
     app_name (default is "boilerplate")? events
-    site_name (default is "bpsite")? usergroups
+    site_name (default is "bpsite")? twd
     project_short_description (default is "Python Boilerplate contains all the boilerplate you need to create a Python package.")? code that runs tulsawebdevs.org
     release_date (default is "2015-01-11")? 2015-06-29
     year (default is "2014")? 2015
@@ -63,7 +63,7 @@ After a basic install, you can run:
 
 Deployment Features
 -------------------
-usergroups/settings.py is built using the 12factor_
+twd/settings.py is built using the 12factor_
 principle of getting configuration from the environment.  The default
 configuration is release mode.  You'll need to set environment variables
 to match your desired configuration.

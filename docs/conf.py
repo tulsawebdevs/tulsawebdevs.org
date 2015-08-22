@@ -22,7 +22,7 @@ sys.path.append(parent)
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config")
 os.environ.setdefault("DJANGO_CONFIGURATION", "Local")
 
-from usergroups import __version__
+from twd import __version__
 
 # -- General configuration ------------------------------------------------
 

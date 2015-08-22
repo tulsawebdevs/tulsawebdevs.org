@@ -1,1 +1,1 @@
-web: gunicorn usergroups.wsgi --log-file -
+web: gunicorn twd.wsgi --log-file -

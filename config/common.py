@@ -57,6 +57,7 @@ class Common(Configuration):
 
     # Apps specific for this project go here.
     LOCAL_APPS = (
+        'twd',
         'api',
         'events',
         'talks',
@@ -75,9 +76,9 @@ class Common(Configuration):
         'django.middleware.security.SecurityMiddleware',
     )
 
-    ROOT_URLCONF = 'usergroups.urls'
+    ROOT_URLCONF = 'twd.urls'
 
-    WSGI_APPLICATION = 'usergroups.wsgi.application'
+    WSGI_APPLICATION = 'twd.wsgi.application'
 
     # Database
     # https://docs.djangoproject.com/en/1.8/ref/settings/#databases

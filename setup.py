@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """Packaging setup for tulsawebdevs.org."""
 
-from usergroups import __version__ as version
+from twd import __version__ as version
 
 try:
     from setuptools import setup
@@ -67,5 +67,5 @@ setup(
         'Programming Language :: Python :: 3.3',
         'Programming Language :: Python :: 3.4',
     ],
-    test_suite='usergroups.runtests.runtests'
+    test_suite='twd.runtests.runtests'
 )

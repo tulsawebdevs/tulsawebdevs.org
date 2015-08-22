@@ -16,7 +16,7 @@ recursive-include events *.py
 recursive-include events/static *.css *.map *.eot *.svg *.ttf *.woff *.js .keep
 recursive-include events/tempates *.jinja2
 recursive-include events/tests *.py
-recursive-include usergroups *.py
+recursive-include twd *.py
 
 recursive-exclude * *.py[co]
 recursive-exclude * __pycache__
