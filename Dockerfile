@@ -20,7 +20,7 @@ RUN apt-get update && apt-get install -y \
   # nodejs
 
 # install requirements
-
+RUN pip install --upgrade pip
 RUN pip install -r requirements/local.txt
 
 ## Node setup, runs postinstall script in package.json
