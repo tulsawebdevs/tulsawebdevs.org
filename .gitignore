@@ -60,3 +60,8 @@ target/
 .env
 .noseids
 twd/static/
+twd/assets/webpack-stats.json
+
+# Node
+node_modules
+
