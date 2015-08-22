@@ -48,11 +48,10 @@ class Common(Configuration):
     THIRD_PARTY_APPS = (
         'mptt',
         'recurrence',
-
         'django_extensions',
         'rest_framework',
         'rest_framework_gis',
-        # 'webpack_loader',
+        'webpack_loader',
     )
 
     # Apps specific for this project go here.
@@ -161,7 +160,7 @@ class Common(Configuration):
                     # "django_jinja.builtins.extensions.StaticFilesExtension",
                     "django_jinja.builtins.extensions.DjangoFiltersExtension",
                     "django_jinja.builtins.extensions.DjangoExtraFiltersExtension",
-                    # "webpack_loader.contrib.jinja2ext.WebpackExtension",
+                    "webpack_loader.contrib.jinja2ext.WebpackExtension",
                 ],
                 "context_processors": DEFAULT_CONTEXT_PROCESSORS,
                 "autoescape": True,
@@ -186,10 +185,10 @@ class Common(Configuration):
     # }
 
     # Webpack
-    # WEBPACK_LOADER = {
-    #     'BUNDLE_DIR_NAME': 'bundles/',
-    #     'STATS_FILE': abspath(BASE_DIR + '/birds/assets/webpack-stats.json')
-    # }
+    WEBPACK_LOADER = {
+        'BUNDLE_DIR_NAME': 'bundles/',
+        'STATS_FILE': abspath(BASE_DIR + '/twd/assets/webpack-stats.json')
+    }
 
     # Place bcrypt first in the list, so it will be the default password hashing
     # mechanism
