@@ -58,5 +58,5 @@ target/
 
 # Development
 .env
-
 .noseids
+twd/static/
