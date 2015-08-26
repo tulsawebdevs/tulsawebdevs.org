@@ -1,0 +1,8 @@
+#!/bin/bash
+if [[ "$DATABASE_PASSWORD" ]]; then
+  DB_PASS="-p $DATABASE_PASSWORD"
+fi
+sleep 5
+createdb -h db -U postgres twd || echo db exists
+python manage.py migrate
+python manage.py runserver_plus 0.0.0.0:8000
