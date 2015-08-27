@@ -65,13 +65,15 @@ There are two options, via docker or a local install. For both you'll need to fo
 1. Install the docker toolbox: https://www.docker.com/toolbox
 2. Run the Docker init APP `Applications/Docker/QuickStart Terminal.app`
 3. Take note of the IP address the VM is running under
-3. Download and install images/containers, run in daemon mode.
+4. Download and install images/containers, run in daemon mode
+
    ```bash
    $ docker-compose up -d
    $ docker-compose run web python manage.py createsuperuser
    ```
-4. Enter the information you would like to use for your superuser
-5. Visit `<vm ip>:8000/admin/` in your browser, confirm you can login
+   
+5. Enter the information you would like to use for your superuser
+6. Visit `<vm ip>:8000/admin/` in your browser, confirm you can login
 
 ### Locally
 
@@ -90,6 +92,7 @@ There are two options, via docker or a local install. For both you'll need to fo
    $ ./manage.py runserver_plus
    ```
    You should see some output letting you know the location of the server and info about the django install.
+   
    ```bash
    Django version 1.8.4, using settings 'config'
    Development server is running at http://127.0.0.1:8000/
@@ -98,6 +101,7 @@ There are two options, via docker or a local install. For both you'll need to fo
    Validating models...
    System check identified no issues (0 silenced).
    ```
+   
 3. Visit the server url to check that everything is running correctly
 
 ## Making a change, fixing bugs or adding features
