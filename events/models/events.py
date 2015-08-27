@@ -138,6 +138,8 @@ class EventCategory(MPTTModel):
 
     class Meta:
         ordering = ('lft',)
+        verbose_name = _('Event Category')
+        verbose_name_plural = _('Event Categories')
 
     class MPTTMeta:
         order_insertion_by = ('order',)
