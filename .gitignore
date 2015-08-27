@@ -61,7 +61,7 @@ target/
 .noseids
 twd/static/
 twd/assets/webpack-stats.json
+DB_INIT
 
 # Node
 node_modules
-

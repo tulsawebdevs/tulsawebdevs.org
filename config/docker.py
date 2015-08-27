@@ -20,3 +20,5 @@ class Docker(Local):
     PROJ4_LIBRARY_PATH = values.Value('', environ_prefix=False)
 
     DATABASES = values.DatabaseURLValue('postgis://postgres:postgres@db:5432/twd')
+
+    SESSION_REDIS_URL = values.Value('redis://redis/1')

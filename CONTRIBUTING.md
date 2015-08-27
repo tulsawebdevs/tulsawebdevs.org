@@ -51,6 +51,8 @@ If you are proposing a feature:
 Ready to contribute? Here's how to set up tulsawebdevs.org
 for local development.
 
+There are two options, via docker or a local install. For both you'll need to fork and clone the repository. You'll be committing any changes to a branch on your fork and submitting pull requests when your feature or bug fix is done.
+
 1. Fork the `tulsawebdevs.org` repo on GitHub.
 2. Clone your fork locally:
 
@@ -58,18 +60,49 @@ for local development.
    $ git clone git@github.com:your_name_here/tulsawebdevs.org.git
    ```
 
-3. Install your local copy into a virtualenv. Assuming you have
+### Via Docker Compose (OSX only)
+
+1. Install the docker toolbox: https://www.docker.com/toolbox
+2. Run the Docker init APP `Applications/Docker/QuickStart Terminal.app`
+3. Take note of the IP address the VM is running under
+3. Download and install images/containers, run in daemon mode.
+   ```bash
+   $ docker-compose up -d
+   $ docker-compose run web python manage.py createsuperuser
+   ```
+4. Enter the information you would like to use for your superuser
+5. Visit `<vm ip>:8000/admin/` in your browser, confirm you can login
+
+### Locally
+
+1. Install your local copy into a virtualenv. Assuming you have
    virtualenvwrapper installed, this is how you set up your fork for local
    development:
-   
+
    ```bash
    $ mkvirtualenv tulsawebdevs.org
    $ cd tulsawebdevs.org/
-   $ pip install -r requirements.txt -r requirements-dev.txt
+   $ pip install -r requirements/local.txt
    $ ./manage.py syncdb
    ```
+2. Run the server
+   ```bash
+   $ ./manage.py runserver_plus
+   ```
+   You should see some output letting you know the location of the server and info about the django install.
+   ```bash
+   Django version 1.8.4, using settings 'config'
+   Development server is running at http://127.0.0.1:8000/
+   Using the Werkzeug debugger (http://werkzeug.pocoo.org/)
+   Quit the server with CONTROL-C.
+   Validating models...
+   System check identified no issues (0 silenced).
+   ```
+3. Visit the server url to check that everything is running correctly
 
-4. Create a branch for local development:
+## Making a change, fixing bugs or adding features
+
+2. Create a branch for local development:
 
    ```bash
    $ git checkout -b name-of-your-bugfix-or-feature
@@ -77,14 +110,12 @@ for local development.
 
    Now you can make your changes locally.
 
-5. When you're done making changes, check that your changes pass flake8 and the
+3. When you're done making changes, check that your changes pass flake8 and the
    tests, including testing other Python versions with tox::
 
    ```bash
    $ make qa-all
    ```
-
-   To get flake8 and tox, just pip install them into your virtualenv.
 
 6. Commit your changes and push your branch to GitHub:
 
@@ -104,7 +135,7 @@ Before you submit a pull request, check that it meets these guidelines:
 2. If the pull request adds functionality, the docs should be updated. Put
    your new functionality into a function with a docstring, and add the
    feature to the list in README.rst.
-3. The pull request should work for Python 2.7, 3.3, and 3.4, and for PyPy. Check
+3. The pull request should work for Python 3.3, and 3.4, and for PyPy. Check
    https://travis-ci.org/tulsawebdevs/tulsawebdevs.org/pull_requests
    and make sure that the tests pass for all supported Python versions.
 
@@ -112,7 +143,7 @@ Before you submit a pull request, check that it meets these guidelines:
 
 To run a subset of tests:
 ```bash
-$ ./manage.py test events/tests/test_views.py
+$ ./manage.py test events/tests/test_serializers.py
 ```
 
 To mark failed tests:

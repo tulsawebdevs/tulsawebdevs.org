@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# Create database if not yet initialized
+if [ ! -f DB_INIT ]; then
+  createdb -h db -U postgres twd
+  # this is not supposed to be necessary in Django 1.8, but I was getting errors without it
+  psql -h db -U postgres twd <<< 'create extension postgis;'
+  touch DB_INIT
+fi
+python manage.py migrate
+python manage.py runserver_plus 0.0.0.0:8000
