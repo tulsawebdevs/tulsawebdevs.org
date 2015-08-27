@@ -1,6 +1,9 @@
 ==============
 Tulsa Web Devs
 ==============
+.. image:: http://slack.tulsawebdevs.org/badge.svg
+    :alt: Tulsa Web Dev slack
+    :target: http://slack.tulsawebdevs.org
 
 .. image:: https://img.shields.io/travis/tulsawebdevs/tulsawebdevs.org/master.svg
     :alt: The status of Travis continuous integration tests
