@@ -16,18 +16,18 @@ RUN apt-get update && apt-get install -y \
   libgdal-dev \
   libgeos-dev \
   postgresql-client \
-  swig
-  # npm \
-  # nodejs
+  swig \
+  npm \
+  nodejs
 
 # install requirements
 RUN pip install --upgrade pip
 RUN pip install -r requirements/local.txt
 
 ## Node setup, runs postinstall script in package.json
-# RUN ln -s /usr/bin/nodejs /usr/bin/node
-# RUN npm install
-# RUN npm run build
+RUN ln -s /usr/bin/nodejs /usr/bin/node
+# will run postinstall script, building frontend files
+RUN npm install --unsafe-perm
 
 # static/media dirs
 VOLUME /app/static
