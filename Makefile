@@ -1,4 +1,4 @@
-.PHONY: clean clean-build clean-pyc clean-test qa lint coverage jslint qa-all install-jslint test test-all coverage-console docs release sdist
+.PHONY: clean clean-build clean-pyc clean-test qa lint coverage qa-all test test-all test-watch coverage-console docs release sdist
 
 help:
 	@echo "clean - remove all artifacts"
@@ -40,16 +40,6 @@ clean-test:
 
 lint:
 	flake8 .
-
-jslint:
-	if type jslint >/dev/null 2>&1 ; then jslint events/static/js/*; else echo "jslint not installed. To install node and jshint, use 'make install_jslint"; fi
-
-install-jslint:
-	if [ -z "$$VIRTUAL_ENV" ]; then echo "Run inside a virtualenv"; exit 1; fi
-	mkdir -p .node_src_tmp
-	cd .node_src_tmp && curl http://nodejs.org/dist/node-latest.tar.gz | tar xvz && cd node-v* && ./configure --prefix=$$VIRTUAL_ENV && make install
-	npm install -g jslint
-	rm -rf .node_src_tmp
 
 test:
 	./manage.py test
