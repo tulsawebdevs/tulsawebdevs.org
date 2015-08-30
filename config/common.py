@@ -31,6 +31,9 @@ class Common(Configuration):
     # See: https://docs.djangoproject.com/en/dev/ref/settings/#debug
     DEBUG = values.BooleanValue(False)
 
+    # Whether or not to expect webpack in debug mode
+    WEBPACK_DEBUG = values.BooleanValue(False)
+
     ALLOWED_HOSTS = []
 
     # APP CONFIGURATION
@@ -128,12 +131,13 @@ class Common(Configuration):
     DEFAULT_CONTEXT_PROCESSORS = (
         "django.contrib.auth.context_processors.auth",
         # "django.contrib.messages.context_processors.messages",
-        "django.core.context_processors.debug",
-        # "django.core.context_processors.i18n",
-        "django.core.context_processors.static",
-        "django.core.context_processors.media",
-        "django.core.context_processors.request",
-        # "django.core.context_processors.tz",
+        "django.template.context_processors.debug",
+        # "django.template.context_processors.i18n",
+        "django.template.context_processors.static",
+        "django.template.context_processors.media",
+        "django.template.context_processors.request",
+        # "django.template.context_processors.tz",
+        "twd.context_processors.webpack_debug",
     )
 
     # https://niwinz.github.io/django-jinja/#_user_guide_for_django_1_8

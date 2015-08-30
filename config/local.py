@@ -16,6 +16,8 @@ class Local(Common):
 
     DEBUG = values.BooleanValue(True)
 
+    WEBPACK_DEBUG = values.BooleanValue(False)
+
     INTERNAL_IPS = ('*', '127.0.0.1',)
 
     SECRET_KEY = os.environ.get(

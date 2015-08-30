@@ -1,1 +1,1 @@
-document.write('wut dizz')
+console.log('it\'s werking!');

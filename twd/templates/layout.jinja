@@ -3,13 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <title>{% block title %}Tulsa Web Devs{% endblock %}</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha/css/bootstrap.min.css" media="screen" charset="utf-8">
   {% block head %}
   {% endblock %}
 </head>
 <body>
   {% block body %}
   {% endblock %}
-  {% if debug -%}
+  {% if webpack_debug -%}
   <script src="//127.0.0.1:2992/js/bundle.js"></script>
   {%- else -%}
   {{ render_bundle('main') }}
