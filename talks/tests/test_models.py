@@ -36,9 +36,9 @@ class TestSpeakerModel(TestCase):
 
     def test_post_save_name_creation(self):
         speaker = mommy.prepare(Speaker)
-        mock_update_speaker_name = (fudge.Fake('Speaker.update_speaker_name_on_creation')
-            .expects_call().with_args(Speaker, speaker, True))
-
+        mock_update_speaker_name = fudge.Fake(
+            'Speaker.update_speaker_name_on_creation').expects_call().with_args(
+                Speaker, speaker, True)
         with fudge.patched_context(
                 Speaker, 'update_speaker_name_on_creation', mock_update_speaker_name):
             speaker.save()

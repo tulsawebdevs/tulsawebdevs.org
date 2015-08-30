@@ -37,10 +37,11 @@ class Speaker(TimeStampedModel):
 
     @staticmethod
     def update_speaker_name_on_creation(sender, instance, created, **kwargs):
-        "Signal callback to hangle updating the speaker name only when created"
+        """Signal callback to hangle updating the speaker name only when created"""
         if created and instance.user:
             instance.name = instance.user.get_full_name()
             instance.save()
+
 
 post_save.connect(Speaker.update_speaker_name_on_creation, sender=Speaker, dispatch_uid="set_speaker_name")
 
