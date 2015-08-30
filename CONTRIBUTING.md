@@ -145,6 +145,8 @@ Before you submit a pull request, check that it meets these guidelines:
 
 ## Tips
 
+### With a local install
+
 To run a subset of tests:
 ```bash
 $ ./manage.py test events/tests/test_serializers.py
@@ -155,7 +157,26 @@ To mark failed tests:
 $ ./manage.py test --failed
 ```
 
-To re-run only the failed tests:
+Then again to re-run only the failed tests:
 ```bash
 $ ./manage.py test --failed
+```
+
+
+### With a docker install
+
+Most commands that can be run locally can also be called in the docker containers.
+
+Just prefix the regular command with `docker-compose run web <command>`. This will run the your commands on the web service.
+
+**ProTip** maybe make a local alias for running docker-compose run commands?
+
+For example to run all tests with docker:
+```bash
+docker-compose run web make test
+```
+
+To open a new iPython shell with all application models loaded.
+```bash
+docker-compose run web ./manage.py shell_plus
 ```
