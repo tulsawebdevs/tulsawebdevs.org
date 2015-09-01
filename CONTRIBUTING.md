@@ -71,7 +71,7 @@ There are two options, via docker or a local install. For both you'll need to fo
    $ docker-compose up -d
    $ docker-compose run web python manage.py createsuperuser
    ```
-   
+
 5. Enter the information you would like to use for your superuser
 6. Visit `<vm ip>:8000/admin/` in your browser, confirm you can login
 
@@ -92,7 +92,7 @@ There are two options, via docker or a local install. For both you'll need to fo
    $ ./manage.py runserver_plus
    ```
    You should see some output letting you know the location of the server and info about the django install.
-   
+
    ```bash
    Django version 1.8.4, using settings 'config'
    Development server is running at http://127.0.0.1:8000/
@@ -101,7 +101,7 @@ There are two options, via docker or a local install. For both you'll need to fo
    Validating models...
    System check identified no issues (0 silenced).
    ```
-   
+
 3. Visit the server url to check that everything is running correctly
 
 ## Making a change, fixing bugs or adding features
@@ -180,3 +180,9 @@ To open a new iPython shell with all application models loaded.
 ```bash
 docker-compose run web ./manage.py shell_plus
 ```
+
+To be able to use ipdb for debugging when running inside a container:
+```bash
+docker-compose run --service-ports web
+```
+Make sure to stop the previous web container before running this command.
