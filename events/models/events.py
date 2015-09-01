@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
-from datetime import datetime
 
+import arrow
 from django.db import models
+from django.db.models import permalink
 from django.template import engines
 from django.utils.translation import ugettext_lazy as _
+from django.utils.timezone import datetime
 from django_extensions.db.fields import AutoSlugField
 from mptt.models import MPTTModel, TreeForeignKey, TreeManager
 from recurrence.fields import RecurrenceField
@@ -83,6 +85,10 @@ class Event(EventModelMixin):
 
     def get_occurrences(self, start, end=None):
         """Return a generator that outputs occurrences in the given range"""
+        # TODO: have limit kwarg, can be used when searching for first occurrence
+        assert isinstance(start, datetime)
+        if not end:
+            end = arrow.get(start).replace(years=1).naive
         # get persisted occurrences from the database in that range
         persisted_occurrences = self.occurrences.filter(start__gte=start, end__lte=end)
         occurrence_replacer = OccurrenceReplacer(persisted_occurrences)
@@ -106,6 +112,10 @@ class Event(EventModelMixin):
             if not final_occurrence.cancelled:
                 yield final_occurrence
             occurrence = next(occurrence_generator)
+
+    @permalink
+    def get_absolute_url(self):
+        return ('events:detail', (), {'pk': self.event.pk})
 
 
 class EventCategory(MPTTModel):
@@ -196,6 +206,12 @@ class Occurrence(EventModelMixin):
             occurrence.update_template_description()
 
         return occurrence
+
+    @permalink
+    def get_absolute_url(self):
+        return ('events:occurrence_detail', (), {
+                'pk': self.event.pk, 'year': self.start.year,
+                'month': self.start.month, 'day': self.start.day})
 
     @property
     def category(self):
