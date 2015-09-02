@@ -18,18 +18,23 @@ class EventsListView(base_views.EventsListViewBase):
 class HomePageView(TemplateView):
     template_name = 'twd/home.jinja'
 
+    def dispatch(self, *args, **kwargs):
+        self.start_from = arrow.utcnow().replace(weeks=-1).naive
+        self.until = arrow.utcnow().replace(months=1).naive
+        return super().dispatch(*args, **kwargs)
+
     def get_context_data(self):
         context = super().get_context_data()
         context.update({
-            'get_upcoming_events': self.get_upcoming_events
+            'get_upcoming_events': self.get_upcoming_events,
+            'start': self.start_from,
+            'until': self.until
         })
         return context
 
     def get_upcoming_events(self):
         """Grab all occurrences from a week ago to a month in the future"""
-        start_from = arrow.utcnow().replace(weeks=-1).naive
-        until = arrow.utcnow().replace(months=1).naive
-        return Event.objects.get_occurrences(start_from, until)
+        return Event.objects.get_occurrences(self.start_from, self.until)
 
 
 # Event/Occurrence Views

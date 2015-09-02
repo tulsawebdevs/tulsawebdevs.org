@@ -15,12 +15,15 @@
       </div>
       <!-- Events -->
       <h3>Upcoming Events</h3>
+      <p>Events from <strong>{{ start|date }}</strong> to <strong>{{ until|date }}</strong></p>
       {% for event_occ in get_upcoming_events() %}
         <div class="card m-t {{ event_occ.slug|default('un-persisted') }} {{ event_occ.event.slug }}">
           <div class="card-block">
             <h4 class="card-title">{{ event_occ.title }}</h4>
             <p class="card-text">
-              <small class="text-muted">{{ event_occ.start|date('M d Y') }}</small>
+              <small class="text-muted"><time datetime="{{ event_occ.start }}">{{ event_occ.start|date }}</time></small>
+              <small>in</small>
+              <small class="text-muted">{{ event_occ.start|timeuntil }}</small>
               {% if event_occ.location %}
                 <small class="pull-right">{{ event_occ.location.name }}</small></p>
               {% endif %}
