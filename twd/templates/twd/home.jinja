@@ -15,16 +15,16 @@
       </div>
       <!-- Events -->
       <h3>Upcoming Events</h3>
-      {% for event in get_upcoming_events() %}
-        <div class="card m-t">
+      {% for event_occ in get_upcoming_events() %}
+        <div class="card m-t {{ event_occ.slug|default('un-persisted') }} {{ event_occ.event.slug }}">
           <div class="card-block">
-            <h4 class="card-title">{{ event.title }}</h4>
+            <h4 class="card-title">{{ event_occ.title }}</h4>
             <p class="card-text">
-              <small class="text-muted">{{ event.start|date('M d Y') }}</small>
-              {% if event.location %}
-                <small class="pull-right">{{ event.location.name }}</small></p>
+              <small class="text-muted">{{ event_occ.start|date('M d Y') }}</small>
+              {% if event_occ.location %}
+                <small class="pull-right">{{ event_occ.location.name }}</small></p>
               {% endif %}
-            <p class="card-text">{{ event.description }}</p>
+            <p class="card-text">{{ event_occ.description }}</p>
           </div>
         </div>
       {% endfor %}
