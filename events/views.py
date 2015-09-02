@@ -1,3 +1,4 @@
+from django.core.urlresolvers import resolve
 from django.forms.models import model_to_dict
 from django.http import Http404, HttpResponseRedirect
 from django.views.generic import ListView, CreateView, DeleteView, DetailView, UpdateView
