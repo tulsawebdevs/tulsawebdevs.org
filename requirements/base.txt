@@ -28,6 +28,7 @@ geopy==1.10.0
 
 # Time related
 arrow==0.6.0
+pytz==2015.4
 
 # static file related
 whitenoise==2.0.3

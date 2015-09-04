@@ -27,8 +27,7 @@ class EventModelManager(models.Manager):
 
         if category:
             qs = qs.filter(Q(category=category) | Q(category__parent=category))
-        else:
-            qs = qs.filter(start__lt=end)
+            
         # get all occurrences for those events that don't already have a
         # persistent match and that lie in this period.
         all_occurrences = []

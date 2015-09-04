@@ -2,6 +2,7 @@ import arrow
 from django.core.exceptions import ValidationError
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
+from django.utils.timezone import now, utc
 from django_extensions.db.models import TimeStampedModel, TitleSlugDescriptionModel
 
 from .meta import Location
@@ -40,6 +41,10 @@ class EventModelMixin(TimeStampedModel, TitleSlugDescriptionModel):
         if (self.end and self.start) and self.end < self.start:
             # REVIEW: would be nice if this was a part of the field validators
             raise ValidationError("Start time must be earlier than end time.")
+
+    @property
+    def has_past(self):
+        return self.end.replace(tzinfo=utc) < now()
 
     class Meta:
         abstract = True

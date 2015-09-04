@@ -18,6 +18,11 @@
       <p>Events from <strong>{{ start|date }}</strong> to <strong>{{ until|date }}</strong></p>
       {% for event_occ in get_upcoming_events() %}
         <div class="card m-t {{ event_occ.slug|default('un-persisted') }} {{ event_occ.event.slug }}">
+          {% if event_occ.has_past -%}
+          <div class="card-header">
+            event past
+          </div>
+          {%- endif %}
           <div class="card-block">
             <h4 class="card-title">{{ event_occ.title }}</h4>
             <p class="card-text">
