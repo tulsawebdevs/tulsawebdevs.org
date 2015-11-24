@@ -1,8 +1,8 @@
-Django==1.8.4
+Django==1.8.6
 
 # Settings management
 #django-configurations==0.9
-git+https://github.com/jezdez/django-configurations.git@5ece107044
+git+https://github.com/petermelias/django-configurations.git@98daaa18ae
 
 # database
 psycopg2==2.6.1
@@ -16,20 +16,19 @@ django-jinja==1.4.1
 bcrypt==2.0.0
 
 # Third party modules
-django-extensions==1.5.5
-djangorestframework==3.2.2
+django-extensions==1.5.9
+djangorestframework==3.3.1
 django-mptt==0.7.4
 django-redis-sessions==0.5.0
 django-recurrence==1.2.0
 
 # GEO
-djangorestframework-gis==0.9.3
-geopy==1.10.0
+djangorestframework-gis==0.9.6
+geopy==1.11.0
 
 # Time related
-arrow==0.6.0
+arrow==0.7.0
 
 # static file related
-whitenoise==2.0.3
-#django-webpack-loader==0.1.2.1
-git+https://github.com/destos/django-webpack-loader.git@master
+whitenoise==2.0.6
+django-webpack-loader==0.2.2

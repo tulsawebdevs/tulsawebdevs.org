@@ -15,7 +15,7 @@ var BundleTracker = require('webpack-bundle-tracker');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 // debug
-console.log(output_path, js_dir, css_dir);
+// console.log(output_path, js_dir, css_dir);
 
 module.exports = {
   cache: true,
@@ -41,14 +41,24 @@ module.exports = {
         // include: /js/,
         exclude: /node_modules/,
         query: {
-          optional: ['runtime'],
-          stage: 0
+          // presets: ['react', 'es2015'],
+          plugins: ['transform-runtime']
         }
       },
       {
         test: /\.css$/,
-        loader: ExtractTextPlugin.extract('style', 'css'),
+        loader: ExtractTextPlugin.extract('style-loader', 'css-loader'),
         include: css_dir
+      },
+      {
+        test: /\.scss$/,
+        loader: ExtractTextPlugin.extract('style-loader', 'css-loader?sourceMap', 'sass-loader?sourceMap')
+      },
+      // SASS Currently not working :(
+      {
+        test: /\.sass$/,
+        // Passing indentedSyntax query param to node-sass
+        loader: ExtractTextPlugin.extract("style-loader', 'css-loader?sourceMap', 'sass-loader?indentedSyntax")
       }
     ]
   },
@@ -70,6 +80,6 @@ module.exports = {
     new webpack.optimize.UglifyJsPlugin({ output: {comments: false} }),
     // new webpack.optimize.CommonsChunkPlugin("commons.chunk-[hash].js"),
     new ExtractTextPlugin('[name].css', {allChunks: true}),
-    new BundleTracker({path: __dirname, filename: 'webpack-stats.json'})
+    new BundleTracker({path: __dirname, filename: 'webpack.stats.json'})
   ]
 }

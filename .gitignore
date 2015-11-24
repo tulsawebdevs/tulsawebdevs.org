@@ -65,3 +65,5 @@ DB_INIT
 
 # Node
 node_modules
+
+twd/assets/webpack.stats.json
