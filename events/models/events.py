@@ -219,7 +219,7 @@ class Occurrence(EventModelMixin):
 
     def get_template_context(self):
         return {
-            'occ': self,
+            'occurrence': self,
             'event': self.event
         }
 
@@ -232,7 +232,7 @@ class Occurrence(EventModelMixin):
         rendered = template.render(self.get_template_context())
         setattr(self, field, rendered)
 
-    default_title_template = "{{ occ.start|date('M') }} - {{event.title}}"
+    default_title_template = "{{ occurrence.start|date('M') }} - {{event.title}}"
 
     def update_template_title(self):
         self.set_template('title', self.event.title_template)

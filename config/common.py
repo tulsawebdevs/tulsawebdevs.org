@@ -190,8 +190,10 @@ class Common(Configuration):
 
     # Webpack
     WEBPACK_LOADER = {
-        'BUNDLE_DIR_NAME': 'bundles/',
-        'STATS_FILE': abspath(BASE_DIR + '/twd/assets/webpack-stats.json')
+        'DEFAULT': {
+            'BUNDLE_DIR_NAME': 'bundles/',
+            'STATS_FILE': abspath(BASE_DIR + '/twd/assets/webpack.stats.json')
+        }
     }
 
     # Place bcrypt first in the list, so it will be the default password hashing
