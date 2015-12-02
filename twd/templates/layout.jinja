@@ -4,16 +4,17 @@
   <meta charset="UTF-8">
   <title>{% block title %}Tulsa Web Devs{% endblock %}</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha/css/bootstrap.min.css" media="screen" charset="utf-8">
-  {% block head %}
-  {% endblock %}
+  {%- block head %}
+  {% endblock -%}
+  {{ render_bundle('main', 'css') }}
 </head>
 <body>
-  {% block body %}
-  {% endblock %}
-  {% if webpack_debug -%}
+  {%- block body %}
+  {% endblock -%}
+  {%- if webpack_debug -%}
   <script src="//127.0.0.1:2992/js/bundle.js"></script>
   {%- else -%}
-  {{ render_bundle('main') }}
+  {{ render_bundle('main', 'js') }}
   {%- endif %}
 </body>
 </html>
