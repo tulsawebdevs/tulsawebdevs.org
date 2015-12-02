@@ -163,7 +163,7 @@ class TestOccurenceModel(TestCase):
         context = occ.get_template_context()
 
         self.assertEqual(context, {
-            'occ': occ,
+            'occurrence': occ,
             'event': self.event
         })
 
